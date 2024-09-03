@@ -1,12 +1,12 @@
 const AWS = require('aws-sdk')
 
 // Set the region
-AWS.config.update({ region: 'us-east-1' })
+AWS.config.update({ region: 'eu-west-1' })
 
 const DEBUG = false
 
 // Create CloudWatch service object
-const cloudwatch = new AWS.CloudWatch({ apiVersion: '2010-08-01' })
+const cloudwatch = new AWS.CloudWatch({ apiVersion: 'latest' })
 
 async function main () {
   const metrics = await getMetrics(1)
@@ -51,7 +51,7 @@ async function getSingleSum (metric) {
 
 async function getMetrics (count, token) {
   console.log(`Iteration #${count}, ${500 * (count - 1)} metrics`)
-  var params = {}
+  const params = {}
   if (token) {
     params.NextToken = token
   }
